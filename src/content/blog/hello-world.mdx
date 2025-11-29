@@ -1,0 +1,96 @@
+---
+title: "Hello World: Starting My Tech Blog"
+description: "Welcome to my new tech blog built with Astro, Svelte, and shadcn-svelte"
+pubDate: 2025-01-15
+author: "Author Name"
+tags: ["astro", "blog", "web development"]
+---
+
+## Welcome!
+
+Welcome to my new tech blog! This is the first post on a journey to share knowledge about web development, programming, and technology.
+
+## What is This Blog Built With?
+
+This blog is built with modern web technologies that prioritize performance and developer experience:
+
+### Astro
+
+[Astro](https://astro.build) is a modern static site generator that delivers lightning-fast websites. It uses the **Islands Architecture** pattern, which means interactive components (like the dark mode toggle) only load JavaScript where needed. Everything else is just static HTML and CSS.
+
+### Svelte & shadcn-svelte
+
+For interactive components, I'm using [Svelte](https://svelte.dev) with [shadcn-svelte](https://www.shadcn-svelte.com), which provides beautiful, accessible UI components. These components use the latest Svelte 5 features including runes for reactivity.
+
+### TypeScript & esbuild
+
+All code is written in TypeScript for type safety, and Astro uses **esbuild** (written in Go) under the hood for ultra-fast compilation. This means:
+
+- TypeScript compilation is 10-100x faster than traditional `tsc`
+- Hot reload takes less than 100ms
+- Full builds complete in under 5 seconds
+
+### Tailwind CSS
+
+Styling is handled by [Tailwind CSS](https://tailwindcss.com), a utility-first CSS framework that makes it easy to build responsive, beautiful designs quickly.
+
+## Features
+
+This blog includes several modern features:
+
+### Code Syntax Highlighting
+
+Code blocks are highlighted using Shiki with support for 11+ programming languages:
+
+```typescript
+function greet(name: string): string {
+  return `Hello, ${name}!`;
+}
+
+console.log(greet("World"));
+```
+
+```python
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+
+print(greet("World"))
+```
+
+### Dark Mode
+
+Try clicking the sun/moon icon in the header! The theme preference is saved in localStorage and respects your system preferences.
+
+### Responsive Design
+
+The site is fully responsive and works great on mobile, tablet, and desktop screens.
+
+### SEO Optimized
+
+Every page includes:
+- Proper meta tags
+- Open Graph tags for social media
+- Sitemap generation
+- RSS feed
+
+## What's Next?
+
+I'm excited to share more content about:
+
+- Web development best practices
+- JavaScript/TypeScript tips and tricks
+- Framework comparisons and deep dives
+- Performance optimization techniques
+- And much more!
+
+Stay tuned for more posts, and don't forget to subscribe to the [RSS feed](/rss.xml)!
+
+## Get Involved
+
+This blog is [open source on GitHub](https://github.com/yish0/yish0.github.io). Feel free to:
+
+- Report issues
+- Suggest improvements
+- Share your thoughts
+
+Happy reading! 🚀

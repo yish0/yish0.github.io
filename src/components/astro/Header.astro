@@ -1,0 +1,30 @@
+---
+import ThemeToggle from '../svelte/ThemeToggle.svelte';
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  <nav class="container flex h-14 items-center justify-between">
+    <a href="/" class="flex items-center space-x-2">
+      <span class="font-bold text-xl">Tech Blog</span>
+    </a>
+    <div class="flex items-center gap-4">
+      <div class="hidden md:flex items-center gap-6">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+      <ThemeToggle client:load />
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/astro/Header.astro';
+import Footer from '../components/astro/Footer.astro';
+---
+
+<BaseLayout title="About | Tech Blog" description="About this blog">
+  <Header />
+  <main class="flex-1">
+    <div class="container max-w-4xl py-10">
+      <div class="prose prose-slate dark:prose-invert">
+        <h1>About</h1>
+        <p>
+          Welcome to my tech blog! This is a place where I share my thoughts on web development,
+          programming, and technology.
+        </p>
+        <h2>About This Blog</h2>
+        <p>
+          This blog is built with modern web technologies:
+        </p>
+        <ul>
+          <li><strong>Astro</strong> - Static site generator with excellent performance</li>
+          <li><strong>Svelte</strong> - Interactive components with minimal JavaScript</li>
+          <li><strong>shadcn-svelte</strong> - Beautiful UI components</li>
+          <li><strong>Tailwind CSS</strong> - Utility-first CSS framework</li>
+          <li><strong>TypeScript</strong> - Type-safe code with esbuild compilation</li>
+        </ul>
+        <p>
+          The site features dark mode, code syntax highlighting, and is fully responsive.
+          All content is written in MDX, allowing for rich, interactive blog posts.
+        </p>
+        <h2>Contact</h2>
+        <p>
+          Feel free to reach out or follow along:
+        </p>
+        <ul>
+          <li>GitHub: <a href="https://github.com/yish0" target="_blank" rel="noopener noreferrer">@yish0</a></li>
+          <li>RSS Feed: <a href="/rss.xml">Subscribe</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
