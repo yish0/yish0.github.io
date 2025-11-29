@@ -8,8 +8,6 @@
       "@layouts/*": ["src/layouts/*"],
       "@lib/*": ["src/lib/*"],
       "$lib/*": ["src/lib/*"]
-    },
-    "jsx": "preserve",
-    "jsxImportSource": "svelte"
+    }
   }
 }

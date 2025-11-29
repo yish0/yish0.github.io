@@ -4,6 +4,6 @@ export default {
   preprocess: vitePreprocess(),
   compilerOptions: {
     // Enable runtime reactivity
-    runes: true
-  }
+    runes: true,
+  },
 };

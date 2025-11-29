@@ -7,6 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 A modern tech blog built with Astro 4.x, Svelte 5.x, and shadcn-svelte. The architecture follows Astro's Islands pattern where static content is rendered as HTML and interactive components (Svelte) are hydrated only where needed.
 
 **Key Technologies:**
+
 - **Astro 4.x**: Static site generator with Islands Architecture
 - **Svelte 5.x**: Interactive components with runes ($state, $props)
 - **shadcn-svelte**: Pre-built UI components (Button, Card, Separator)
@@ -37,8 +38,10 @@ pnpm dlx shadcn-svelte@latest add [component]
 - **Interactive components** (`.svelte` files in `src/components/svelte/`): Hydrated client-side using `client:load` or `client:idle` directives
 
 Example:
+
 ```astro
-<ThemeToggle client:load />  <!-- Svelte component, hydrated on page load -->
+<ThemeToggle client:load />
+<!-- Svelte component, hydrated on page load -->
 ```
 
 ### Content Collections
@@ -48,6 +51,7 @@ Blog posts are managed through Astro's Content Collections with type-safe frontm
 **Location:** `src/content/blog/*.mdx`
 
 **Schema:** Defined in `src/content/config.ts` with Zod validation:
+
 - `title` (string, required)
 - `description` (string, required)
 - `pubDate` (Date, required)
@@ -57,6 +61,7 @@ Blog posts are managed through Astro's Content Collections with type-safe frontm
 - `image` (string, optional)
 
 **Usage:**
+
 ```typescript
 import { getCollection } from 'astro:content';
 const posts = await getCollection('blog');
@@ -65,12 +70,14 @@ const posts = await getCollection('blog');
 ### Import Aliases & Path Resolution
 
 **Critical:** The project uses `$lib` alias for shadcn-svelte components, configured in:
+
 1. `tsconfig.json` - TypeScript path mapping
 2. `astro.config.mjs` - Vite alias resolution (`'$lib': '/src/lib'`)
 
 **Import patterns:**
+
 ```typescript
-import { cn } from '$lib/utils';                    // Utility functions
+import { cn } from '$lib/utils'; // Utility functions
 import Button from '$lib/components/ui/button/button.svelte';
 ```
 
@@ -91,6 +98,7 @@ Theme is persisted in `localStorage.theme` and applied to `document.documentElem
 ### shadcn-svelte Components
 
 Components are installed in `src/lib/components/ui/` with the following structure:
+
 ```
 src/lib/components/ui/
 ├── button/
@@ -110,6 +118,7 @@ src/lib/components/ui/
 ### Tailwind CSS Configuration
 
 Custom theme extends Tailwind with:
+
 - **Dark mode**: Class-based (`darkMode: ['class']`)
 - **CSS variables**: Uses HSL color variables for theme consistency
 - **Container**: Centered with responsive padding
@@ -118,6 +127,7 @@ Custom theme extends Tailwind with:
 ### Global CSS Variables
 
 Defined in `src/styles/global.css` using HSL values:
+
 ```css
 :root {
   --background: 0 0% 100%;
@@ -138,12 +148,14 @@ Colors are accessed via Tailwind utilities: `bg-background`, `text-foreground`, 
 ## Code Syntax Highlighting
 
 Configured in `astro.config.mjs` using Shiki:
+
 - **Theme**: `github-dark`
 - **Supported languages**: JavaScript, TypeScript, JSX, TSX, Python, Java, Go, Rust, SQL, Bash, YAML, JSON
 
 ## Routing & Pages
 
 Astro uses file-based routing:
+
 - `src/pages/index.astro` → `/`
 - `src/pages/blog/index.astro` → `/blog`
 - `src/pages/blog/[...slug].astro` → `/blog/{slug}` (dynamic routes for blog posts)
@@ -152,6 +164,7 @@ Astro uses file-based routing:
 ## Deployment
 
 Automated via GitHub Actions (`.github/workflows/deploy.yml`):
+
 - Triggered on push to `main` branch
 - Uses pnpm for dependency installation
 - Deploys to GitHub Pages
@@ -167,13 +180,14 @@ Automated via GitHub Actions (`.github/workflows/deploy.yml`):
 4. Commit and push to trigger deployment
 
 Example frontmatter:
+
 ```mdx
 ---
-title: "Post Title"
-description: "Brief description"
+title: 'Post Title'
+description: 'Brief description'
 pubDate: 2025-01-20
-author: "Your Name"
-tags: ["tag1", "tag2"]
+author: 'Your Name'
+tags: ['tag1', 'tag2']
 ---
 ```
 

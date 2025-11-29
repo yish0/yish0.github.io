@@ -84,11 +84,11 @@ Create a new `.mdx` file in `src/content/blog/`:
 
 ```mdx
 ---
-title: "Your Post Title"
-description: "Brief description"
+title: 'Your Post Title'
+description: 'Brief description'
 pubDate: 2025-01-20
-author: "Your Name"
-tags: ["tag1", "tag2"]
+author: 'Your Name'
+tags: ['tag1', 'tag2']
 ---
 
 ## Your Content Here

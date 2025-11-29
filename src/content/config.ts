@@ -9,10 +9,10 @@ const blogCollection = defineCollection({
     author: z.string().default('Author Name'),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
-    image: z.string().optional()
-  })
+    image: z.string().optional(),
+  }),
 });
 
 export const collections = {
-  blog: blogCollection
+  blog: blogCollection,
 };

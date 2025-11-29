@@ -18,7 +18,7 @@
   const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
-    day: 'numeric'
+    day: 'numeric',
   });
 </script>
 
@@ -32,8 +32,10 @@
       <p class="text-muted-foreground">{description}</p>
       {#if tags.length > 0}
         <div class="flex gap-2 mt-4 flex-wrap">
-          {#each tags as tag}
-            <span class="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+          {#each tags as tag (tag)}
+            <span
+              class="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
+            >
               {tag}
             </span>
           {/each}

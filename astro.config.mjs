@@ -12,15 +12,27 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       theme: 'github-dark',
-      langs: ['javascript', 'typescript', 'jsx', 'tsx', 'python', 'java',
-              'go', 'rust', 'sql', 'bash', 'yaml', 'json']
-    }
+      langs: [
+        'javascript',
+        'typescript',
+        'jsx',
+        'tsx',
+        'python',
+        'java',
+        'go',
+        'rust',
+        'sql',
+        'bash',
+        'yaml',
+        'json',
+      ],
+    },
   },
   vite: {
     resolve: {
       alias: {
-        '$lib': '/src/lib'
-      }
-    }
-  }
+        $lib: '/src/lib',
+      },
+    },
+  },
 });

@@ -10,7 +10,7 @@ export interface Props {
 const {
   title = 'Tech Blog',
   description = 'A modern tech blog built with Astro',
-  image = '/og-image.png'
+  image = '/og-image.png',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -68,7 +68,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </script>
   </head>
   <body>
-    <div class="min-h-screen flex flex-col">
+    <div class="flex min-h-screen flex-col">
       <slot />
     </div>
   </body>
