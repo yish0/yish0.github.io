@@ -23,7 +23,7 @@
 </script>
 
 <a href={`/blog/${slug}`} class="block hover:opacity-80 transition-opacity">
-  <Card class="h-full">
+  <Card class="h-full border-0 shadow-none bg-transparent">
     <CardHeader>
       <CardTitle>{title}</CardTitle>
       <CardDescription>{formattedDate}</CardDescription>
