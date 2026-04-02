@@ -30,6 +30,8 @@
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --font-heading: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --container-5xl: 64rem;
 }
 
 /* Dark mode */

@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
-import TOC from '../../components/TOC.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -22,7 +21,7 @@ const { Content, headings } = await render(post);
   updatedDate={post.data.updatedDate}
   heroImage={post.data.heroImage}
   tags={post.data.tags}
+  headings={headings}
 >
-  <TOC headings={headings} />
   <Content />
 </BlogPostLayout>
