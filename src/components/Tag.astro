@@ -11,16 +11,25 @@ const sizeClasses = {
   sm: 'px-2 py-0.5 text-xs',
   md: 'px-3 py-1 text-sm',
 };
-
-const baseClasses = `inline-block rounded-full font-medium transition-colors
-  bg-primary-100 text-primary-700
-  dark:bg-primary-900 dark:text-primary-300
-  hover:bg-primary-200 dark:hover:bg-primary-800
-  ${sizeClasses[size]}`;
 ---
 
 {href ? (
-  <a href={href} class={baseClasses}>{name}</a>
+  <a
+    href={href}
+    class:list={[
+      'inline-block rounded-full font-medium transition-colors',
+      'bg-primary-100 text-primary-700 hover:bg-primary-200',
+      'dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800',
+      sizeClasses[size],
+    ]}
+  >{name}</a>
 ) : (
-  <span class={baseClasses}>{name}</span>
+  <span
+    class:list={[
+      'inline-block rounded-full font-medium transition-colors',
+      'bg-primary-100 text-primary-700 hover:bg-primary-200',
+      'dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800',
+      sizeClasses[size],
+    ]}
+  >{name}</span>
 )}
