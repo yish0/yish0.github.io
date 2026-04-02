@@ -3,6 +3,9 @@ title: 'Hello World'
 description: '블로그의 첫 번째 포스트입니다.'
 pubDate: 2026-04-01
 tags: ['intro', 'blog']
+series:
+  name: 'Astro 입문'
+  order: 1
 ---
 
 # Hello World

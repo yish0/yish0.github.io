@@ -6,12 +6,23 @@ export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   return posts.map((post) => ({
     params: { id: post.id },
-    props: post,
+    props: { post, allPosts: posts },
   }));
 }
 
-const post = Astro.props;
+const { post, allPosts } = Astro.props;
 const { Content, headings } = await render(post);
+
+const series = post.data.series;
+const seriesPosts = series
+  ? allPosts
+      .filter((p) => p.data.series?.name === series.name)
+      .sort((a, b) => {
+        const orderDiff = a.data.series!.order - b.data.series!.order;
+        return orderDiff !== 0 ? orderDiff : a.data.pubDate.valueOf() - b.data.pubDate.valueOf();
+      })
+      .map((p) => ({ title: p.data.title, href: `/blog/${p.id}`, order: p.data.series!.order }))
+  : [];
 ---
 
 <BlogPostLayout
@@ -22,6 +33,9 @@ const { Content, headings } = await render(post);
   heroImage={post.data.heroImage}
   tags={post.data.tags}
   headings={headings}
+  seriesName={series?.name}
+  seriesOrder={series?.order}
+  seriesPosts={seriesPosts}
 >
   <Content />
 </BlogPostLayout>

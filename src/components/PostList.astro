@@ -9,6 +9,10 @@ interface Post {
     pubDate: Date;
     tags?: string[];
     heroImage?: string;
+    series?: {
+      name: string;
+      order: number;
+    };
   };
 }
 
@@ -29,6 +33,7 @@ const { posts, class: className } = Astro.props;
       href={`/blog/${post.id}`}
       tags={post.data.tags}
       heroImage={post.data.heroImage}
+      series={post.data.series}
     />
   ))}
 </div>

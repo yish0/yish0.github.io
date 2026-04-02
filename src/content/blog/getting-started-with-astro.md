@@ -3,6 +3,9 @@ title: 'Getting Started with Astro'
 description: 'Astro 프레임워크로 블로그를 시작하는 방법을 알아봅니다.'
 pubDate: 2026-04-02
 tags: ['astro', 'tutorial', 'blog']
+series:
+  name: 'Astro 입문'
+  order: 2
 ---
 
 # Getting Started with Astro

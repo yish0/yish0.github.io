@@ -1,0 +1,21 @@
+---
+interface Props {
+  seriesName: string;
+  order: number;
+}
+
+const { seriesName, order } = Astro.props;
+const seriesSlug = encodeURIComponent(seriesName);
+---
+
+<a
+  href={`/series/${seriesSlug}`}
+  class:list={[
+    'relative z-10 inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium rounded-full',
+    'bg-primary-100 text-primary-700 hover:bg-primary-200',
+    'dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800',
+    'transition-colors',
+  ]}
+>
+  📚 {seriesName} #{order}
+</a>

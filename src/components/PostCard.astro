@@ -1,6 +1,7 @@
 ---
 import FormattedDate from './FormattedDate.astro';
 import TagList from './TagList.astro';
+import SeriesBadge from './SeriesBadge.astro';
 
 interface Props {
   title: string;
@@ -9,9 +10,13 @@ interface Props {
   href: string;
   tags?: string[];
   heroImage?: string;
+  series?: {
+    name: string;
+    order: number;
+  };
 }
 
-const { title, description, pubDate, href, tags = [], heroImage } = Astro.props;
+const { title, description, pubDate, href, tags = [], heroImage, series } = Astro.props;
 ---
 
 <article class="group relative rounded-xl border border-border p-5 hover:border-primary-400 transition-colors">
@@ -22,6 +27,12 @@ const { title, description, pubDate, href, tags = [], heroImage } = Astro.props;
       class="w-full rounded-lg mb-4 object-cover h-48"
       loading="lazy"
     />
+  )}
+
+  {series && (
+    <div class="absolute top-3 right-3">
+      <SeriesBadge seriesName={series.name} order={series.order} />
+    </div>
   )}
 
   <div class="space-y-2">

@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+  const seriesMap = new Map<string, typeof posts>();
+  posts.forEach((post) => {
+    if (post.data.series) {
+      const name = post.data.series.name;
+      if (!seriesMap.has(name)) {
+        seriesMap.set(name, []);
+      }
+      seriesMap.get(name)!.push(post);
+    }
+  });
+
+  return [...seriesMap.entries()].map(([name, seriesPosts]) => ({
+    params: { name },
+    props: {
+      name,
+      posts: seriesPosts.sort((a, b) => {
+        const orderDiff = a.data.series!.order - b.data.series!.order;
+        return orderDiff !== 0 ? orderDiff : a.data.pubDate.valueOf() - b.data.pubDate.valueOf();
+      }),
+    },
+  }));
+}
+
+const { name, posts } = Astro.props;
+---
+
+<BaseLayout title={`Series: ${name}`} description={`"${name}" 시리즈의 포스트입니다.`}>
+  <div class="py-8">
+    <div class="mb-8">
+      <a href="/series" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">
+        &larr; All series
+      </a>
+      <h1 class="text-3xl font-bold font-heading mt-2">📚 {name}</h1>
+      <p class="text-text-muted mt-1">{posts.length} post{posts.length !== 1 ? 's' : ''}</p>
+    </div>
+    <PostList posts={posts} />
+  </div>
+</BaseLayout>

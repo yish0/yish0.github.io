@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+const seriesCounts = new Map<string, number>();
+posts.forEach((post) => {
+  if (post.data.series) {
+    const name = post.data.series.name;
+    seriesCounts.set(name, (seriesCounts.get(name) || 0) + 1);
+  }
+});
+
+const sortedSeries = [...seriesCounts.entries()].sort((a, b) => b[1] - a[1]);
+---
+
+<BaseLayout title="Series" description="모든 시리즈 목록입니다.">
+  <div class="py-8">
+    <h1 class="text-3xl font-bold font-heading mb-8">Series</h1>
+    <div class="flex flex-wrap gap-3">
+      {sortedSeries.map(([name, count]) => (
+        <a
+          href={`/series/${encodeURIComponent(name)}`}
+          class:list={[
+            'inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border',
+            'hover:border-primary-400 hover:bg-surface-alt transition-colors',
+          ]}
+        >
+          <span class="text-sm font-medium">📚 {name}</span>
+          <span class="text-sm text-text-muted">({count})</span>
+        </a>
+      ))}
+    </div>
+    {sortedSeries.length === 0 && (
+      <p class="text-center text-text-muted py-12">No series found.</p>
+    )}
+  </div>
+</BaseLayout>
