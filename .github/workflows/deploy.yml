@@ -38,9 +38,17 @@ jobs:
 
       - run: pnpm build
 
-      - uses: actions/upload-pages-artifact@v4
+      - name: Archive pages artifact
+        shell: bash
+        run: tar --dereference --hard-dereference --directory dist -cvf "$RUNNER_TEMP/artifact.tar" --exclude=.git --exclude=.github .
+
+      - name: Upload pages artifact
+        uses: actions/upload-artifact@v7
         with:
-          path: dist
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
 
   deploy:
     needs: build
