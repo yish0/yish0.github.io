@@ -1,17 +1,30 @@
 ---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import PostList from '../components/PostList.astro';
 
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 6);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Home" description="yish0의 개인 블로그입니다.">
+  <Hero
+    title="Welcome"
+    description="개발과 기술에 관한 이야기를 기록합니다."
+  />
+
+  <section>
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-bold font-heading">Recent Posts</h2>
+      <a
+        href="/blog"
+        class="text-sm text-primary-600 dark:text-primary-400 hover:underline"
+      >
+        View all &rarr;
+      </a>
+    </div>
+    <PostList posts={posts} />
+  </section>
+</BaseLayout>

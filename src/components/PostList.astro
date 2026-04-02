@@ -1,0 +1,38 @@
+---
+import PostCard from './PostCard.astro';
+
+interface Post {
+  id: string;
+  data: {
+    title: string;
+    description: string;
+    pubDate: Date;
+    tags?: string[];
+    heroImage?: string;
+  };
+}
+
+interface Props {
+  posts: Post[];
+  class?: string;
+}
+
+const { posts, class: className } = Astro.props;
+---
+
+<div class:list={['grid gap-6 sm:grid-cols-2', className]}>
+  {posts.map((post) => (
+    <PostCard
+      title={post.data.title}
+      description={post.data.description}
+      pubDate={post.data.pubDate}
+      href={`/blog/${post.id}`}
+      tags={post.data.tags}
+      heroImage={post.data.heroImage}
+    />
+  ))}
+</div>
+
+{posts.length === 0 && (
+  <p class="text-center text-text-muted py-12">No posts found.</p>
+)}

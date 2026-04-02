@@ -1,0 +1,23 @@
+---
+import Nav from './Nav.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  siteName?: string;
+}
+
+const { siteName = 'yish0' } = Astro.props;
+---
+
+<header class="sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur-md">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <a href="/" class="text-lg font-bold font-heading hover:text-primary-600 transition-colors">
+      {siteName}
+    </a>
+
+    <div class="flex items-center gap-4">
+      <Nav />
+      <ThemeToggle />
+    </div>
+  </div>
+</header>

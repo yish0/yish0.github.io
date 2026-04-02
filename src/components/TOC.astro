@@ -1,0 +1,38 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+  title?: string;
+}
+
+const { headings, title = 'Table of Contents' } = Astro.props;
+const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+{filteredHeadings.length > 0 && (
+  <nav
+    class="rounded-xl border border-border p-5 mb-8"
+    aria-label="Table of contents"
+  >
+    <h2 class="text-sm font-semibold mb-3 text-text-muted uppercase tracking-wider">
+      {title}
+    </h2>
+    <ul class="space-y-1.5 text-sm">
+      {filteredHeadings.map((heading) => (
+        <li class:list={[heading.depth === 3 && 'ml-4']}>
+          <a
+            href={`#${heading.slug}`}
+            class="text-text-muted hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}

@@ -1,0 +1,22 @@
+---
+import Tag from './Tag.astro';
+
+interface Props {
+  tags: string[];
+  linkable?: boolean;
+  size?: 'sm' | 'md';
+  class?: string;
+}
+
+const { tags, linkable = true, size = 'sm', class: className } = Astro.props;
+---
+
+<div class:list={['flex flex-wrap gap-2', className]}>
+  {tags.map((tag) => (
+    <Tag
+      name={tag}
+      href={linkable ? `/tags/${tag}` : undefined}
+      size={size}
+    />
+  ))}
+</div>

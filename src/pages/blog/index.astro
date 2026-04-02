@@ -1,0 +1,15 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="Blog" description="블로그 포스트 목록입니다.">
+  <div class="py-8">
+    <h1 class="text-3xl font-bold font-heading mb-8">Blog</h1>
+    <PostList posts={posts} />
+  </div>
+</BaseLayout>

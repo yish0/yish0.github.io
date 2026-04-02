@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+  const tags = new Set<string>();
+  posts.forEach((post) => {
+    post.data.tags?.forEach((tag) => tags.add(tag));
+  });
+
+  return [...tags].map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: posts
+        .filter((post) => post.data.tags?.includes(tag))
+        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout title={`Tag: ${tag}`} description={`"${tag}" 태그가 있는 포스트입니다.`}>
+  <div class="py-8">
+    <div class="mb-8">
+      <a href="/tags" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">
+        &larr; All tags
+      </a>
+      <h1 class="text-3xl font-bold font-heading mt-2">#{tag}</h1>
+      <p class="text-text-muted mt-1">{posts.length} post{posts.length !== 1 ? 's' : ''}</p>
+    </div>
+    <PostList posts={posts} />
+  </div>
+</BaseLayout>

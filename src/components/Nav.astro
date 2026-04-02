@@ -1,0 +1,40 @@
+---
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  items?: NavItem[];
+}
+
+const { items = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Tags', href: '/tags' },
+] } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav>
+  <ul class="flex items-center gap-6">
+    {items.map((item) => {
+      const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+      return (
+        <li>
+          <a
+            href={item.href}
+            class:list={[
+              'text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400',
+              isActive ? 'text-primary-600 dark:text-primary-400' : 'text-text-muted',
+            ]}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>
